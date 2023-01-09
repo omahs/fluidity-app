@@ -5,6 +5,7 @@ interface Chain {
 
 interface ISupportedChains {
   ETH: Chain;
+  ARB: Chain;
   SOL: Chain;
 }
 
@@ -14,6 +15,10 @@ export const SupportedChains: ISupportedChains = {
   ETH: {
     name: "ethereum",
     short: "ETH",
+  },
+  ARB: {
+    name: "arbitrum",
+    short: "ARB",
   },
   SOL: {
     name: "solana",

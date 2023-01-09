@@ -5,6 +5,12 @@ testnet = false
 rpc = { http = "FLU_ETH_RPC_HTTP", ws = "FLU_ETH_RPC_WS" }
 server = "https://api.ethereum.fluidity.money"
 
+[[drivers.arbitrum]]
+label = "Arbitrum"
+testnet = false
+rpc = { http = "FLU_ARB_RPC_HTTP", ws = "FLU_ARB_RPC_WS" }
+server = "https://api.ethereum.fluidity.money"
+
 # [[drivers.solana]]
 # label = "Solana"
 # testnet = false
@@ -112,6 +118,29 @@ address = "0x244517Dc59943E8CdFbD424Bdb3262c5f04a1387"
 colour = "#825902"
 isFluidOf = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
 decimals = 18
+
+[config.arbitrum]
+explorer = "https://arbiscan.io"
+fluidAssets = [
+    "0xCfA801cb926Ed09F0E61Aa034194a88f595aFFfF",
+]
+
+[[config.arbitrum.tokens]]
+symbol = "USDC"
+name = "USD Coin"
+logo = "/assets/tokens/usdc.svg"
+address = "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8"
+colour = "#2775ca"
+decimals = 6
+
+[[config.arbitrum.tokens]]
+symbol = "fUSDC"
+name = "Fluid USDC"
+logo = "/assets/tokens/fUSDC.svg"
+address = "0xCfA801cb926Ed09F0E61Aa034194a88f595aFFfF"
+colour = "#2775ca"
+isFluidOf = "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8"
+decimals = 6
 
 [config.solana]
 explorer = "https://explorer.solana.com"

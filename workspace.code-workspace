@@ -1,0 +1,53 @@
+{
+    "folders": [
+        {
+            "name": "Root",
+            "path": "./"
+        },
+        {
+            "name": "Web Projects",
+            "path": "web"
+        },
+        {
+            "name": "Smart Contracts",
+            "path": "contracts"
+        },
+    ],
+    "settings": {
+        "taskExplorer.exclude": [
+            "**/.vscode-test/**",
+            "**/Assets/**",
+            "**/bin/**",
+            "**/build/**",
+            "**/dist/**",
+            "**/doc/**",
+            "**/example/**",
+            "**/examples/**",
+            "**/ext/**",
+            "**/obj/**",
+            "**/out/**",
+            "**/output/**",
+            "**/packages/**",
+            "**/release/**",
+            "**/releases/**",
+            "**/samples/**",
+            "**/sdks/**",
+            "**/static/**",
+            "**/target/**",
+            "**/test/**",
+            "**/third_party/**",
+            "**/vendor/**",
+            "**/work/**",
+            "**/tsconfig.json",
+            "**/fluidity/fluidity-app/web/Makefile",
+            "**/fluidity/fluidity-app/web/**/Makefile",
+            "**/fluidity/fluidity-app/web/**/Makefile",
+            "**/fluidity/fluidity-app/web/**/Makefile"
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "spmeesseman.vscode-taskexplorer"
+        ]
+    }
+}

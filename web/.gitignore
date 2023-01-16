@@ -1,1 +1,4 @@
 .turbo
+
+# NPM is no longer used to manage dependencies, so there is no need to keep this file
+package-lock.json

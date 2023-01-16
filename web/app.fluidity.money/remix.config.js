@@ -8,4 +8,9 @@ module.exports = {
     "dnd-core",
   ],
   ignoredRouteFiles: ["**/__tests__/**"],
+  serverBuildTarget: "arc",
+  server: "./server.js",
+  appDirectory: "app",
+  assetsBuildDirectory: "public/build",
+  serverBuildPath: "server/index.js",
 };

@@ -1,0 +1,15 @@
+import { Title, Subtitle, Canvas, Meta, Story } from "@storybook/addon-docs";
+import StatusCodeError from './'
+
+<Title>Status Code Error</Title>
+<Subtitle>An adaptable error message derived from a HTTP status code.</Subtitle>
+
+<Meta title="Error/Status Code Error"/>
+
+export const Template = (args) => <StatusCodeError {...args} />;
+
+<Canvas>
+    <Story name="404" args={{statusCode: 404}}>
+        {Template.bind({})}
+    </Story>
+</Canvas>

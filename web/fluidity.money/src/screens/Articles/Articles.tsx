@@ -9,6 +9,7 @@ import {
 } from "../../components/Article";
 import styles from "./Articles.module.scss";
 import { ContinuousCarousel, Heading } from "@fluidity-money/surfing";
+import { i18n } from "next-i18next";
 
 interface IArticleProps {
   isResourcesPage?: boolean;
@@ -18,13 +19,15 @@ const Articles = ({ isResourcesPage }: IArticleProps) => {
   /* scrolls to location on pageload if it contains same ID or scrolls to the top
    for ResourcesNavModal to work*/
 
+  const resourcesText = i18n.t("resources", "resources");
+
   const callout = (
-    <div className={styles.callout}>
+    <div className={styles.callout} style={{textTransform: "uppercase"}}>
       <Heading as="h4" className={styles.text}>
-        RESOURCES RESOURCES RESOURCES
+        {resourcesText} {resourcesText} {resourcesText}
       </Heading>
       <Heading as="h4" className={styles.text}>
-        RESOURCES
+        {resourcesText}
       </Heading>
     </div>
   );

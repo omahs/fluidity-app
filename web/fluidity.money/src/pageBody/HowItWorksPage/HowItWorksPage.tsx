@@ -13,15 +13,16 @@ import Yield from "screens/Yield";
 import { Navigation } from "@fluidity-money/surfing";
 import styles from "./HowItWorksPage.module.scss";
 import Head from "next/head";
+import { i18n } from "next-i18next";
 
 const HowItWorksPage = () => {
   return (
     <div className={styles.pageContainer}>
       <Head>
-        <title>How it works - Fluidity</title>
+        <title>{i18n.t("howItWorks.self", "How it works")} - Fluidity</title>
         <meta
           name="description"
-          content="Fluidity is a platfrom that incentivises user activity through yield - See how."
+          content={i18n.t("howItWorks.description", "Fluidity is a platfrom that incentivises user activity through yield - See how.")}
         />
       </Head>
       <div className={styles.screensContainer}>

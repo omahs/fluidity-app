@@ -13,6 +13,7 @@ import {
 import { motion } from "framer-motion";
 import styles from "./Landing.module.scss";
 import { isSafari, isFirefox, isIOS, isMobile } from "react-device-detect";
+import { i18n } from "next-i18next";
 
 const Landing = () => {
   let type = isSafari || isIOS ? "video/quicktime" : "video/webm";
@@ -33,13 +34,15 @@ const Landing = () => {
   const { width } = useViewport();
   const breakpoint = 620;
 
+  const moneyMoves = i18n.t("landing.moneyMoves", "Money designed to move");
+
   const callout = (
-    <div className={styles.callout}>
+    <div className={styles.callout} style={{textTransform: "uppercase"}}>
       <Heading as="h4" className={styles.text}>
-        MONEY DESIGNED TO MOVE MONEY DESIGNED TO MOVE
+        {moneyMoves} {moneyMoves}
       </Heading>
       <Heading as="h4" className={styles.text}>
-        MONEY DESIGNED TO MOVE
+        {moneyMoves}
       </Heading>
     </div>
   );
@@ -98,8 +101,7 @@ const Landing = () => {
             transition={{ duration: 1, type: "tween" }}
           >
             <Heading as="h3">
-              Fluidity is the blockchain incentive layer, <br />
-              rewarding people for using their crypto.
+              {i18n.t("landing.heading", "Fluidity is the blockchain incentive layer,\nrewarding people for using their crypto.")}
             </Heading>
           </motion.div>
         )}
@@ -127,22 +129,19 @@ const Landing = () => {
               img={"/assets/images/landingIcons/1to1.png"}
               side={"left"}
             >
-              1 to 1 exchange rate <br />
-              to base wrapped assets
+              {i18n.t("landing.exchange", "1 to 1 exchange rate to base wrapped assets")}
             </IntroTile>
             <IntroTile
               img={"/assets/images/landingIcons/sendReceive.png"}
               side={"left"}
             >
-              Senders and receivers <br />
-              both qualify
+              {i18n.t("landing.sendReceive", "Senders and receivers\nboth qualify")}
             </IntroTile>
             <IntroTile
               img={"/assets/images/landingIcons/everyTransaction.png"}
               side={"left"}
             >
-              Every transaction <br />
-              qualifies as a reward
+              {i18n.t("landing.qualification", "Every transaction qualifies as a reward")}
             </IntroTile>
           </motion.div>
 
@@ -158,21 +157,19 @@ const Landing = () => {
               img={"/assets/images/landingIcons/expectedOutcome.png"}
               side={width < breakpoint && width > 0 ? "left" : "right"}
             >
-              Fluidity improves your expected <br />
-              outcome over time
+              {i18n.t("landing.outcome", "Fluidity improves your expected outcome over time")}
             </IntroTile>
             <IntroTile
               img={"/assets/images/landingIcons/forReceivers.png"}
               side={width < breakpoint && width > 0 ? "left" : "right"}
             >
-              Rewards can range from cents
-              <br /> to millions
+              {i18n.t("landing.rewardAmount", "Rewards can range from cents to millions")}
             </IntroTile>
             <IntroTile
               img={"/assets/images/landingIcons/scalingEcosystem.png"}
               side={width < breakpoint && width > 0 ? "left" : "right"}
             >
-              Scaling ecosystem
+              {i18n.t("landing.scaling", "Scaling ecosystem")}
             </IntroTile>
           </motion.div>
         </div>

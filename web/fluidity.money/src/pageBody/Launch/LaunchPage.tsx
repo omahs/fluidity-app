@@ -14,6 +14,8 @@ import SponsorsPartners from "../../screens/SponsorsPartners";
 import UseCases from "../../screens/UseCases";
 import styles from "./LaunchPage.module.scss";
 
+import { i18n } from "next-i18next";
+
 const LaunchPage = (props) => {
   useEffect(() => {
     window.location.hash = "demo";
@@ -22,10 +24,13 @@ const LaunchPage = (props) => {
   return (
     <div className={styles.pageContainer}>
       <Head>
-        <title>Fluidity - Supercharge your Crypto</title>
+        <title>
+          {i18n.t("landing.title", "Fluidity - Supercharge your Crypto")}
+        </title>
         <meta
           name="description"
-          content="Fluidity lets you earn while spending your crypto. Get more out your crypto - Fluidify your money."
+          content={
+            i18n.t("landing.description", "Fluidity lets you earn while spending your crypto. Get more out your crypto - Fluidify your money.")}
         />
       </Head>
       <div id={"modal"} className={styles.screensContainer}>

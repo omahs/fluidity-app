@@ -2,6 +2,7 @@
 // source code is governed by a GPL-style license that can be found in the
 // LICENSE.md file.
 
+import { i18n } from "next-i18next";
 import Head from "next/head";
 import Articles from "screens/Articles";
 import Demo from "../../screens/Demo";
@@ -25,7 +26,7 @@ const LandingPage = () => {
   return (
     <div className={styles.pageContainer}>
       <Head>
-        <title>Fluidity - Supercharge your Crypto</title>
+        <title>{i18n.t("landing.title", "Fluidity - Supercharge your Crypto")}</title>
         <meta
           name="description"
           content="Fluidity lets you earn while spending your crypto. Get more out your crypto - Fluidify your money."

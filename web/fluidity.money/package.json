@@ -14,6 +14,7 @@
     "ethers": "^5.7.2",
     "framer-motion": "^7.3.6",
     "next": "^12.3.0",
+    "next-i18next": "^13.0.3",
     "react": "^18.2.0",
     "react-animated-numbers": "^0.14.0",
     "react-device-detect": "^2.2.2",
@@ -38,6 +39,7 @@
     "graphql": "^16.6.0",
     "graphql-ws": "^5.10.1",
     "graphqurl": "^1.0.1",
+    "i18next-parser": "^7.5.0",
     "sass": "^1.54.4"
   },
   "scripts": {

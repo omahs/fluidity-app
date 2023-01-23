@@ -1,0 +1,54 @@
+{
+  "howItWorks": {
+    "oneToOne": "Fluid assets are a 1:1 wrapped asset with perpetual payout properties.",
+    "yieldGeneration": "They distribute yield when when used on any on-chain use-case. Yield is gained through utility.",
+    "governance": "The user is incentivised through governance."
+  },
+  "landing": {
+    "title": "Fluidity - Supercharge your Crypto",
+    "description": "Fluidity lets you earn while spending your crypto. Get more out your crypto - Fluidify your money.",
+    "moneyMoves": "Money designed to move",
+    "heading": "Fluidity is the blockchain incentive layer,\nrewarding people for using their crypto.",
+    "exchange": "1 to 1 exchange rate to base wrapped assets",
+    "sendReceive": "Senders and receivers\nboth qualify",
+    "qualification": "Every transaction qualifies as a reward",
+    "outcome": "Fluidity improves your expected outcome over time",
+    "rewardAmount": "Rewards can range from cents to millions",
+    "scaling": "Scaling ecosystem"
+  },
+  "resources": "resources",
+  "fluidify": "fluidify",
+  "yield": "yield",
+  "govern": "govern",
+  "sponsors": {
+    "circle": "Circle is a global internet finance company built on blockchain technology and powered by crypto assets.",
+    "multicoin": "Multicoin Capital is a thesis-driven cryptofund that invests long term in tokens that reshape entire sectors of the global economy.",
+    "solana": "Solana Ventures' mission is to accelerate the growth of the Solana blockchain and adjacent ecosystems by providing capital to the most promising teams building in the crypto ecosystem.",
+    "lemniscap": "Lemniscap is an investment firm specializing in investments in emerging cryptoassets and blockchain companies",
+    "aave": "Aave is a decentralized non-custodial liquidity protocol where users can participate as depositors or borrowers",
+    "compound": "Compound is an algorithmic, autonomous interest rate protocol built for developers, to unlock a universe of open financial applications. ",
+    "jupiter": "Jupiter is the key liquidity aggregator for Solana, offering the widest range of tokens and best route discovery between any token pair.",
+    "maker": "MakerDAO enables the generation of Dai, the world's first unbiased currency and leading decentralized stablecoin.",
+    "aldrin": "Aldrin is a decentralized exchange whose mission is to simplify DeFi and create powerful tools to help all traders succeed, leading to more equality.",
+    "dodo": "DODO is a decentralized exchange that uses the innovative algorithms to provide efficient on-chain liquidity for Web3 assets.",
+    "orca": "Orca is the easiest, fastest, and most user-friendly cryptocurrency exchange on the Solana blockchain."
+  },
+  "use": {
+    "title": {
+      "sender": "For senders",
+      "reciever": "For receivers",
+      "utility": "Assets & utility",
+      "payment": "Transactions & payments",
+      "metaverse": "Metaverse & gaming",
+      "dex": "Decentralized exchanges",
+      "nft": "NFTs"
+    },
+    "sender": "Every time you use fluid assets in any use case, you earn yield. Make purchases and send money as you normally would, but with the added potential to win rewards.",
+    "receiver": "Fluid assets incentivise adoption by rewarding counterparts to participate in the fluid economy.",
+    "utility": "Fluid assets are composable by nature and can successfully promote both user and platform engagement through its novel reward distribution mechanisms.",
+    "payment": "Cashback programs/incentives have always been single-sided, pro-consumer. Fluidity rectifies that by rewarding the recipient/counterparty with a cut of the yield.",
+    "metaverse": "Fluidity rewards all forms of use cases. Gaming and metaverses are high-velocity use cases that can massively benefit from the fluid ecosystem.",
+    "dex": "Transacting, trading and asset movement are integral activities within decentralised programs and their applications. Value transfers can greatly benefit from adopting the fluid layer.",
+    "nft": "The Fluid Layer rewards all forms of use cases. Games and metaverses are high velocity use-cases that can highly benefit from adopting the Fluid Layer; allowing supplementary income sources."
+  }
+}

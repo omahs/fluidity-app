@@ -13,6 +13,7 @@ import {
 } from "@fluidity-money/surfing";
 import styles from "./HowItWorks.module.scss";
 import Link from "next/link";
+import { i18n } from "next-i18next";
 
 const HowItWorks = () => {
   /* 
@@ -25,15 +26,15 @@ const HowItWorks = () => {
   const images = [
     {
       bgImage: "/assets/videos/FluidityWrap.mp4",
-      text: "FLUIDIFY",
+      text: i18n.t("fluidify", "fluidify"),
     },
     {
       bgImage: "/assets/videos/FluidityYield.mp4",
-      text: "YIELD",
+      text: i18n.t("yield", "yield")
     },
     {
       bgImage: "/assets/videos/FluidityHowItWorks.mp4",
-      text: "GOVERN",
+      text: i18n.t("govern", "govern"),
     },
   ].map(({ bgImage, ...image }) => ({
     ...image,
@@ -58,13 +59,15 @@ const HowItWorks = () => {
 
   const size = width > 1130 ? "h2" : width < 1130 && width > 520 ? "h4" : "h5";
 
+  const howItWorks = i18n.t("howItWorks", "How it works");
+
   const callout = (
-    <div className={styles.callout}>
+    <div className={styles.callout} style={{ textTransform: "uppercase" }}>
       <Heading as="h4" className={styles.text}>
-        HOW IT WORKS HOW IT WORKS HOW IT WORKS
+        {howItWorks} {howItWorks} {howItWorks}
       </Heading>
       <Heading as="h4" className={styles.text}>
-        HOW IT WORKS
+        {howItWorks}
       </Heading>
     </div>
   );
@@ -92,24 +95,22 @@ const HowItWorks = () => {
       <div className={styles.grid}>
         <div className={styles.left}>
           <Text as={"p"} prominent={currentImageIndex === 0}>
-            Fluid assets are a 1:1 wrapped asset with perpetual payout
-            properties.
+            {i18n.t("howItWorks.oneToOne", "Fluid assets are a 1:1 wrapped asset with perpetual payout properties.")}
           </Text>
           <Text as={"p"} prominent={currentImageIndex === 1}>
-            They distribute yield when when used on any on-chain use-case. Yield
-            is gained through utility.
+            {i18n.t("howItWorks.yieldGeneration", "They distribute yield when when used on any on-chain use-case. Yield is gained through utility.")}
           </Text>
           <Text as={"p"} prominent={currentImageIndex === 2}>
-            The user is incentivised through governance.
+            {i18n.t("howItWorks.governance", "The user is incentivised through governance.")}
           </Text>
           <Link href="/howitworks" passHref>
-            <a href="/howitworks">
+            <a href="/howitworks" style={{ textTransform: "uppercase" }}>
               <LinkButton
                 type={"internal"}
                 size={"medium"}
                 handleClick={() => {}}
               >
-                HOW IT WORKS
+                {howItWorks}
               </LinkButton>
             </a>
           </Link>

@@ -17,11 +17,13 @@ import { EIP1193 } from "@web3-react/eip1193";
 import FluidityFacadeContext from "./FluidityFacade";
 
 import RewardPoolAbi from "~/util/chainUtils/ethereum/RewardPool.json";
+import DegenScoreAbi from "~/util/chainUtils/ethereum/DegenScoreBeacon.json";
 import {
   getTotalPrizePool,
   getUserMintLimit,
   userMintLimitEnabled,
   manualRewardToken,
+  getUserDegenScore,
 } from "~/util/chainUtils/ethereum/transaction";
 import makeContractSwap, {
   ContractToken,
@@ -37,6 +39,10 @@ type OKXWallet = {
   isOkxWallet: boolean;
 } & Provider;
 
+type Coin98Wallet = {
+  isCoin98?: boolean
+} & Provider
+
 const EthereumFacade = ({
   children,
   tokens,
@@ -48,6 +54,7 @@ const EthereumFacade = ({
 }) => {
   const { isActive, provider, account, connector } = useWeb3React();
   const okxWallet = useWindow("okxwallet");
+  const browserWallet = useWindow("ethereum") as Coin98Wallet
 
   // attempt to connect eagerly on mount
   // https://github.com/Uniswap/web3-react/blob/main/packages/example-next/components/connectorCards/MetaMaskCard.tsx#L20
@@ -81,8 +88,9 @@ const EthereumFacade = ({
   };
 
   // find and activate corresponding connector
-  const useConnectorType = (type: "metamask" | "walletconnect" | string) => {
+  const useConnectorType = (type: "metamask" | "walletconnect" | "coin98" | "okxwallet" | string) => {
     let connector: Connector | undefined;
+
     switch (type) {
       case "metamask":
         connector = connectors.find(
@@ -107,6 +115,18 @@ const EthereumFacade = ({
             : undefined;
           return _connector;
         })?.[0];
+        break;
+      case "coin98":
+        (!browserWallet || !browserWallet.isCoin98) && window?.open("https://wallet.coin98.com/", "_blank");
+        console.log(connectors)
+        connector = connectors.find(
+          (connector) => {
+            const _connector = (connector[0].provider as Coin98Wallet)?.isCoin98
+            ? connector[0]
+            : undefined;
+          return _connector;
+          }
+        )?.[0];
         break;
       default:
         console.warn("Unsupported connector", type);
@@ -254,6 +274,11 @@ const EthereumFacade = ({
     );
   };
 
+  /**
+   * getPrizePool attempts to watch asset.
+   *
+   * Will fail on non-Metamask compliant wallets.
+   */
   const addToken = async (symbol: string) => {
     const token = tokens.find((t) => t.symbol === symbol);
 
@@ -271,6 +296,7 @@ const EthereumFacade = ({
     return connector?.watchAsset?.(watchToken);
   };
 
+  // getPrizePool returns total prize pool.
   const getPrizePool = async (): Promise<number> => {
     const signer = provider?.getSigner();
 
@@ -282,6 +308,7 @@ const EthereumFacade = ({
     return getTotalPrizePool(signer.provider, rewardPoolAddr, RewardPoolAbi);
   };
 
+  // getFluidTokens returns FLUID tokens user holds.
   const getFluidTokens = async (): Promise<string[]> => {
     const fluidTokenAddrs = tokens
       .filter((t) => !!t.isFluidOf)
@@ -298,6 +325,28 @@ const EthereumFacade = ({
       .map(([addr]) => addr);
   };
 
+  /**
+   * getDegenScore returns the "DegenScore" of a user.
+   *
+   * Source: https://degenscore.com.
+   */
+  const getDegenScore = async (address: string): Promise<number> => {
+    const signer = provider?.getSigner();
+
+    if (!signer) {
+      return 0;
+    }
+
+    const degenScoreAddr = "0x0521FA0bf785AE9759C7cB3CBE7512EbF20Fbdaa";
+
+    return getUserDegenScore(
+      signer.provider,
+      address,
+      degenScoreAddr,
+      DegenScoreAbi
+    );
+  };
+
   return (
     <FluidityFacadeContext.Provider
       value={{
@@ -312,6 +361,7 @@ const EthereumFacade = ({
         rawAddress: account ?? "",
         address: account?.toLowerCase() ?? "",
         manualReward,
+        getDegenScore,
         addToken,
         connected: isActive,
       }}
@@ -351,6 +401,12 @@ export const EthereumProvider = (rpcUrl: string, tokens: Token[]) => {
           );
         _connectors.push([walletConnect, walletconnectHooks]);
         _key.push("WalletConnect");
+
+        const [coin98, coin98Hooks] = initializeConnector<MetaMask>(
+          (actions) => new MetaMask({ actions })
+        );
+        _connectors.push([coin98, coin98Hooks]);
+        _key.push("Coin98");
 
         if (okxWallet) {
           const [okx, okxHooks] = initializeConnector<EIP1193>(

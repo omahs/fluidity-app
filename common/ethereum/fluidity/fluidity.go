@@ -15,6 +15,7 @@ import (
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/fluidity-money/fluidity-app/common/ethereum"
+	"github.com/fluidity-money/fluidity-app/lib/log"
 	typesWorker "github.com/fluidity-money/fluidity-app/lib/types/worker"
 )
 
@@ -217,7 +218,7 @@ const operatorAbiString = `[
 				  {
 				  "components": [
 					  { "internalType": "address", "name": "winner", "type": "address" },
-					  { "internalType": "uint256", "name": "amount", "type": "uint256" }
+					  { "internalType": "uint256", "name": "winAmount", "type": "uint256" }
 				  ],
 				  "internalType": "struct Winner[]",
 				  "name": "rewards",
@@ -343,6 +344,8 @@ func GetRewardPool(client *ethclient.Client, fluidityAddress ethCommon.Address) 
 }
 
 func TransactBatchReward(client *ethclient.Client, operatorAddress, tokenAddress ethCommon.Address, transactionOptions *ethAbiBind.TransactOpts, announcement typesWorker.EthereumSpooledRewards) (*ethTypes.Transaction, error) {
+	log.Debugf("tbr called")
+
 	boundContract := ethAbiBind.NewBoundContract(
 		operatorAddress,
 		OperatorAbi,
@@ -361,6 +364,7 @@ func TransactBatchReward(client *ethclient.Client, operatorAddress, tokenAddress
 
 	for utility, reward := range batchedRewards {
 		winners := make([]abiWinner, len(reward))
+		i := 0
 
 		for winnerAddress, winAmount := range reward {
 			winner := abiWinner{
@@ -368,7 +372,8 @@ func TransactBatchReward(client *ethclient.Client, operatorAddress, tokenAddress
 				WinAmount: &winAmount.Int,
 			}
 
-			winners = append(winners, winner)
+			winners[i] = winner
+			i++
 		}
 
 		reward := abiFluidityReward{
@@ -379,6 +384,7 @@ func TransactBatchReward(client *ethclient.Client, operatorAddress, tokenAddress
 		rewards = append(rewards, reward)
 	}
 
+	log.Debugf("estimating gas calling %s", operatorAddress.String())
 	gas, err := ethereum.EstimateGas(
 		client,
 		&OperatorAbi,
